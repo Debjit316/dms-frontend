@@ -310,6 +310,7 @@ const Dashboard = () => {
                   Here's what's happening with your documents today.
                 </CardDescription>
               </CardHeader>
+
               <CardContent>
                 <Button
                   variant="outline"
@@ -324,6 +325,7 @@ const Dashboard = () => {
                   />
                 </Button>
               </CardContent>
+
             </Card>
           )}
 
@@ -354,10 +356,9 @@ const Dashboard = () => {
             </div>
           )}
 
-          {/* Table and Actions (Dashboard & My Documents) */}
-          {(selectedPage === "Dashboard" ||
-            selectedPage === "My Documents") && (
-            <div className="grid gap-6 lg:grid-cols-3 mx-6">
+          {/* Table and Actions (Dashboard, My Documents & Recent) */}
+          {(selectedPage === 'Dashboard' || selectedPage === 'My Documents') && (
+            <div className="grid gap-6 lg:grid-cols-3 mx-6 mt-10">
               <Card className="lg:col-span-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
@@ -516,7 +517,7 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
 
-              {/* Sidebar Cards */}
+              {/* Sidebar Cards - Hide for Recent tab */}
               <div className="space-y-6">
                 <Card className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                   <CardHeader>
