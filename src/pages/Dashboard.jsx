@@ -127,16 +127,24 @@ const Dashboard = () => {
     console.log(dialogOpen);
   }, [dialogOpen]); // For mobile sidebar toggle
   function uploadfile(file) {
-    const filename= file.name;
+    const filename = file.name;
     const workspaceId = "f2f8cc21-3970-4a25-bf41-918857571645";
     const userId = "1542b70b-b10f-45a3-859d-53aabe389afb"; // Replace with actual user ID
     console.log("Uploading file:", file);
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/upload/${userId}/${workspaceId}?filename=${encodeURIComponent(filename)}`, file, {
-        headers: {
-          "Content-Type": file.type,
-        },
-      })
+      .post(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/upload/${userId}/${workspaceId}?filename=${encodeURIComponent(
+          filename
+        )}`,
+        file,
+        {
+          headers: {
+            "Content-Type": file.type,
+          },
+        }
+      )
       .then((response) => {
         alert("File uploaded successfully!");
         console.log("File uploaded successfully:", response.data);
@@ -268,18 +276,22 @@ const Dashboard = () => {
             </div>
             {/* Upload button */}
             <div className="flex items-center space-x-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-row  dark:text-white border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-100 flex items-center"
-                  onClick={() => setDialogOpen(true)}
-                  >
-                  <label className="flex items-center cursor-pointer">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-row  dark:text-white border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-100 flex items-center"
+                onClick={() => setDialogOpen(true)}
+              >
+                <label className="flex items-center cursor-pointer">
                   <Upload className="h-4 w-4 mr-2" />
-                  <input onChange={(e) => uploadfile(e.target.files[0])} type="file" className="hidden" />
+                  <input
+                    onChange={(e) => uploadfile(e.target.files[0])}
+                    type="file"
+                    className="hidden"
+                  />
                   <span>Upload</span>
-              </label>
-                </Button>
+                </label>
+              </Button>
             </div>
           </div>
         </header>
@@ -301,11 +313,15 @@ const Dashboard = () => {
               <CardContent>
                 <Button
                   variant="outline"
-                  size="sm"
-                  className="dark:text-white border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-100 flex items-center"
+                  className="justify-start flex items-center relative overflow-hidden bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-xl shadow-sm transition-colors duration-200"
                 >
-                  <Upload className="h-4 w-4 mr-2" />
-                  Upload New Document
+                  <Upload className="mr-2 h-4 w-4" />
+                  <span>Upload Files</span>
+                  <input
+                    type="file"
+                    onChange={(e) => uploadfile(e.target.files[0])}
+                    className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                  />
                 </Button>
               </CardContent>
             </Card>
@@ -420,7 +436,7 @@ const Dashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-               {/* <div className="grid gap-6 lg:grid-cols-3 mx-6"> */}
+              {/* <div className="grid gap-6 lg:grid-cols-3 mx-6"> */}
               <Card className="lg:col-span-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
@@ -509,11 +525,17 @@ const Dashboard = () => {
                   <CardContent className="space-y-4">
                     <Button
                       variant="outline"
-                      className="w-full justify-start flex items-center"
+                      className="w-full justify-start flex items-center relative overflow-hidden"
                     >
                       <Upload className="mr-2 h-4 w-4" />
-                      Upload Files
+                      <span>Upload Files</span>
+                      <input
+                        type="file"
+                        onChange={(e) => uploadfile(e.target.files[0])}
+                        className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                      />
                     </Button>
+
                     <Button
                       variant="outline"
                       className="w-full justify-start flex items-center"
